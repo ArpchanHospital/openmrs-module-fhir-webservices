@@ -3,19 +3,16 @@ package org.openmrs.module.fhirwebservices.server;
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.rest.server.EncodingEnum;
 import ca.uhn.fhir.rest.server.IResourceProvider;
-import ca.uhn.fhir.rest.server.IServerAddressStrategy;
 import ca.uhn.fhir.rest.server.RestfulServer;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
 import ca.uhn.fhir.rest.server.interceptor.LoggingInterceptor;
 import ca.uhn.fhir.rest.server.interceptor.ResponseHighlighterInterceptor;
-import org.openmrs.module.fhirwebservices.resourceProvider.OrganizationResourceProvider;
+import org.openmrs.module.fhirwebservices.resourceProvider.LocationResourceProvider;
 
 @WebServlet(urlPatterns = "/fhirServlet")
 public class FhirRESTServer extends RestfulServer {
@@ -25,7 +22,7 @@ public class FhirRESTServer extends RestfulServer {
     protected void initialize() throws ServletException {
 
         List<IResourceProvider> resourceProviders = new ArrayList<IResourceProvider>();
-        resourceProviders.add(new OrganizationResourceProvider());
+        resourceProviders.add(new LocationResourceProvider());
 
         this.setFhirContext(FhirContext.forDstu3());
         setResourceProviders(resourceProviders);
