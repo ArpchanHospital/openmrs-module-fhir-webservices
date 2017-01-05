@@ -19,7 +19,7 @@
     <properties>
         <openMRSVersion>2.0.1</openMRSVersion>
         <openMRSRuntimeVersion>2.0.1</openMRSRuntimeVersion>
-        <hapiFhirBaseVersion>1.4</hapiFhirBaseVersion>
+        <hapiFhirBaseVersion>2.2</hapiFhirBaseVersion>
     </properties>
 
     <dependencyManagement>

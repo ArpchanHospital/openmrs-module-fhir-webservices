@@ -20,7 +20,7 @@ public class LocationResourceProvider implements IResourceProvider {
     @Read
     public Location getLocation(@IdParam IdType locationId) {
         LocationService locationService = Context.getLocationService();
-        org.openmrs.Location openmrsLocation = locationService.getLocationByUuid(locationId.getValue());
+        org.openmrs.Location openmrsLocation = locationService.getLocationByUuid(locationId.getIdPart());
         LocationConverter locationConverter = (LocationConverter) FHIRConverterFactory.getInstance().getConverterFor(org.openmrs.Location.class);
 
         return locationConverter.toFHIRResource(openmrsLocation);
