@@ -2,15 +2,15 @@
 /.settings
 /.project
 /target
-/fhir-webservices-api/.classpath
-/fhir-webservices-api/.settings
-/fhir-webservices-api/.project
-/fhir-webservices-api/target
-/fhir-webservices-api/activemq-data
-/fhir-webservices-omod/.classpath
-/fhir-webservices-omod/.settings
-/fhir-webservices-omod/.project
-/fhir-webservices-omod/target
+/api/.classpath
+/api/.settings
+/api/.project
+/api/target
+/api/activemq-data
+/omod/.classpath
+/omod/.settings
+/omod/.project
+/omod/target
 
 /.idea
 *.iml

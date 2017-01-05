@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  The contents of this file are subject to the OpenMRS Public License
+  Version 1.0 (the "License"); you may not use this file except in
+  compliance with the License. You may obtain a copy of the License at
+  http://license.openmrs.org
+
+  Software distributed under the License is distributed on an "AS IS"
+  basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+  License for the specific language governing rights and limitations
+  under the License.
+
+  Copyright (C) OpenMRS, LLC.  All Rights Reserved.
+  -->
+
+<module configVersion="1.2">
+
+    <!-- Module Properties -->
+    <id>org.openmrs.module.fhirwebservices</id>
+    <name>${project.parent.name}</name>
+    <version>${project.parent.version}</version>
+    <package>${project.parent.groupId}.${project.parent.artifactId}</package>
+    <author>Thoughtworks</author>
+    <description>
+        ${project.parent.description}
+    </description>
+    <updateURL>https://modules.openmrs.org/modules/download/${project.parent.artifactId}/update.rdf</updateURL>
+    <require_version>${openMRSVersion}</require_version>
+    <!-- / Module Properties -->
+
+    <require_modules>
+        <!-- <require_module version="2.0">org.openmrs.module.webservices.rest</require_module> -->
+    </require_modules>
+
+    <!-- Module Activator -->
+    <activator>org.openmrs.module.fhirwebservices.FHIRActivator</activator>
+
+
+    <!-- Adds link to admin page -->
+    <!--<extension>-->
+        <!--<point>org.openmrs.admin.list</point>-->
+        <!--<class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.AdminList</class>-->
+    <!--</extension>-->
+
+    <!--<aware_of_modules>-->
+        <!--<aware_of_module version="1.1-SNAPSHOT">org.openmrs.module.allergyapi</aware_of_module>-->
+        <!--<aware_of_module>org.openmrs.module.legacyui</aware_of_module>-->
+    <!--</aware_of_modules>-->
+
+    <!--&lt;!&ndash; Maps hibernate file's, if present &ndash;&gt;-->
+    <!--<mappingFiles>-->
+
+        <!--FHIR.hbm.xml-->
+
+    <!--</mappingFiles>-->
+
+    <servlet>
+        <servlet-name>fhirServlet</servlet-name>
+        <servlet-class>org.openmrs.module.fhirwebservices.server.FhirRESTServer</servlet-class>
+
+    </servlet>
+    <filter>
+        <filter-name>forwardingFilterr</filter-name>
+        <filter-class>org.openmrs.module.fhirwebservices.server.ForwardingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>forwardingFilterr</filter-name>
+        <url-pattern>/ws/fhir/*</url-pattern>
+    </filter-mapping>
+
+</module>
+
