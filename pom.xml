@@ -9,7 +9,7 @@
     <artifactId>fhir-webservices</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-
+    <description>Parent project for the FHIR Web Services Module</description>
 
     <modules>
         <module>api</module>
@@ -20,6 +20,11 @@
         <openMRSVersion>2.0.1</openMRSVersion>
         <openMRSRuntimeVersion>2.0.1</openMRSRuntimeVersion>
         <hapiFhirBaseVersion>2.2</hapiFhirBaseVersion>
+        <MODULE_ID>${project.artifactId}</MODULE_ID>
+        <MODULE_NAME>${project.name}</MODULE_NAME>
+        <MODULE_VERSION>${project.version}</MODULE_VERSION>
+        <MODULE_PACKAGE>${project.groupId}.${MODULE_ID}</MODULE_PACKAGE>
+        <MODULE_DESCRIPTION>${project.description}</MODULE_DESCRIPTION>
     </properties>
 
     <dependencyManagement>
@@ -78,6 +83,12 @@
     </dependencyManagement>
 
     <build>
+        <resources>
+        <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+        </resource>
+        </resources>
         <pluginManagement>
             <plugins>
                 <plugin>
