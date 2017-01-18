@@ -6,6 +6,7 @@ import ca.uhn.fhir.rest.server.IResourceProvider;
 import ca.uhn.fhir.rest.server.RestfulServer;
 import ca.uhn.fhir.rest.server.interceptor.LoggingInterceptor;
 import ca.uhn.fhir.rest.server.interceptor.ResponseHighlighterInterceptor;
+import org.openmrs.module.fhirwebservices.interceptors.ApiExceptionInterceptor;
 import org.openmrs.module.fhirwebservices.resourceProvider.LocationResourceProvider;
 
 import javax.servlet.ServletException;
@@ -29,6 +30,7 @@ public class FhirRESTServer extends RestfulServer {
         setDefaultResponseEncoding(EncodingEnum.JSON);
         ResponseHighlighterInterceptor responseHighlighter = new ResponseHighlighterInterceptor();
         registerInterceptor(responseHighlighter);
+        registerInterceptor(new ApiExceptionInterceptor());
         LoggingInterceptor loggingInterceptor = new LoggingInterceptor();
         registerInterceptor(loggingInterceptor);
         loggingInterceptor.setLoggerName("test.accesslog");
