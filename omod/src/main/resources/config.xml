@@ -22,33 +22,46 @@
 
     <!-- Adds link to admin page -->
     <!--<extension>-->
-        <!--<point>org.openmrs.admin.list</point>-->
-        <!--<class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.AdminList</class>-->
+    <!--<point>org.openmrs.admin.list</point>-->
+    <!--<class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.AdminList</class>-->
     <!--</extension>-->
 
     <!--<aware_of_modules>-->
-        <!--<aware_of_module version="1.1-SNAPSHOT">org.openmrs.module.allergyapi</aware_of_module>-->
-        <!--<aware_of_module>org.openmrs.module.legacyui</aware_of_module>-->
+    <!--<aware_of_module version="1.1-SNAPSHOT">org.openmrs.module.allergyapi</aware_of_module>-->
+    <!--<aware_of_module>org.openmrs.module.legacyui</aware_of_module>-->
     <!--</aware_of_modules>-->
 
     <!--&lt;!&ndash; Maps hibernate file's, if present &ndash;&gt;-->
     <!--<mappingFiles>-->
 
-        <!--FHIR.hbm.xml-->
+    <!--FHIR.hbm.xml-->
 
     <!--</mappingFiles>-->
 
     <servlet>
         <servlet-name>fhirServlet</servlet-name>
         <servlet-class>org.openmrs.module.fhirwebservices.server.FhirRESTServer</servlet-class>
-
     </servlet>
+
     <filter>
-        <filter-name>forwardingFilterr</filter-name>
-        <filter-class>org.openmrs.module.fhirwebservices.server.ForwardingFilter</filter-class>
+        <filter-name>authenticationFilter</filter-name>
+        <filter-class>org.openmrs.module.fhirwebservices.filters.AuthorizationFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>forwardingFilterr</filter-name>
+        <filter-name>authenticationFilter</filter-name>
+        <url-pattern>/ws/fhir/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>authenticationFilter</filter-name>
+        <url-pattern>/ms/fhirServlet/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>fhirServletForwardingFilter</filter-name>
+        <filter-class>org.openmrs.module.fhirwebservices.filters.ForwardingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>fhirServletForwardingFilter</filter-name>
         <url-pattern>/ws/fhir/*</url-pattern>
     </filter-mapping>
 
