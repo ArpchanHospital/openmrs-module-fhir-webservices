@@ -8,8 +8,8 @@ import org.hl7.fhir.dstu3.model.Location;
 import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.openmrs.api.LocationService;
 import org.openmrs.api.context.Context;
-import org.openmrs.healthStandard.converter.fhir.FHIRConverterFactory;
-import org.openmrs.healthStandard.converter.fhir.LocationConverter;
+import org.openmrs.healthStandard.converter.fhir.FHIRConverter;
+import org.openmrs.healthStandard.converter.fhir.FHIRConverterRegistry;
 
 public class LocationResourceProvider implements IResourceProvider {
     public Class<? extends IBaseResource> getResourceType() {
@@ -20,8 +20,9 @@ public class LocationResourceProvider implements IResourceProvider {
     public Location getLocation(@IdParam IdType locationId) {
         LocationService locationService = Context.getLocationService();
         org.openmrs.Location openmrsLocation = locationService.getLocationByUuid(locationId.getIdPart());
-        LocationConverter locationConverter = (LocationConverter) FHIRConverterFactory.getInstance().getConverterFor(org.openmrs.Location.class);
+        FHIRConverter<org.openmrs.Location, Location> converter = FHIRConverterRegistry.getInstance()
+                .getConverterFor(org.openmrs.Location.class, Location.class);
 
-        return locationConverter.toFHIRResource(openmrsLocation);
+        return converter.convert(openmrsLocation);
     }
 }
