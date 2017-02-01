@@ -182,19 +182,26 @@
             <name>OpenMRS Nexus Repository</name>
             <url>http://mavenrepo.openmrs.org/nexus/content/repositories/public</url>
         </repository>
-
         <repository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
+            <id>sonatype-nexus-repo-release</id>
+            <name>Sonatype Nexus Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/releases</url>
+        </repository>
+        <repository>
+            <id>oss-snapshots</id>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
-
+        <repository>
+            <id>repo.mybahmni.org</id>
+            <name>bahmni-artifactory-snapshots</name>
+            <url>http://repo.mybahmni.org.s3.amazonaws.com/artifactory/snapshot</url>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
     </repositories>
 
     <distributionManagement>
