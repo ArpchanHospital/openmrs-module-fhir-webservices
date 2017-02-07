@@ -19,7 +19,7 @@
     <properties>
         <openMRSVersion>2.0.1</openMRSVersion>
         <openMRSRuntimeVersion>2.0.1</openMRSRuntimeVersion>
-        <hapiFhirBaseVersion>2.2</hapiFhirBaseVersion>
+        <hapiFhirBaseVersion>2.0</hapiFhirBaseVersion>
         <MODULE_ID>${project.artifactId}</MODULE_ID>
         <MODULE_NAME>${project.name}</MODULE_NAME>
         <MODULE_VERSION>${project.version}</MODULE_VERSION>
